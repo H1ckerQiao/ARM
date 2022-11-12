@@ -1,0 +1,22 @@
+main.c中的全局变量
+uint16_t pwm=0;
+定时器启动
+    HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1); 
+    HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1); 
+while循环中添加
+while (pwm< 500)
+	  {
+		  pwm++;
+		  __HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, pwm);  
+    __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, pwm);  			
+		  HAL_Delay(1);
+	  }
+	  while (pwm)
+	  {
+		  pwm--;
+		  __HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, pwm);    
+       __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, pwm);  
+			
+		  HAL_Delay(1);
+	  }
+	  HAL_Delay(200);
